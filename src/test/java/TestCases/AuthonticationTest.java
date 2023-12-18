@@ -59,6 +59,11 @@ public class AuthonticationTest extends TestBase {
         authPageObj.ClickOnContinueButton();
     }
 
+    public void validLogin()
+    {
+
+    }
+
 
     @AfterMethod
     public void afterMethod()
