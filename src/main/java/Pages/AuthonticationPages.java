@@ -33,6 +33,7 @@ public class AuthonticationPages extends PageBase {
     By accountDeletedTitleBy = By.cssSelector("[data-qa='account-deleted']");
     By loginMessageTitleBy = By.cssSelector("div .login-form>h2");
     By loginUserNameTitleBy = By.xpath("//a[text()=' Logged in as ']/b");
+    By invalidLoginErrorMsgTitleBy = By.cssSelector("[action='/login']>p");
 
     //Methods
         public AuthonticationPages(WebDriver driver)
@@ -132,6 +133,11 @@ public class AuthonticationPages extends PageBase {
         public String getLoggedUserText()
         {
             return getAnyText(driver , loginUserNameTitleBy);
+        }
+
+        public String getLoginErrorText()
+        {
+            return getAnyText(driver ,invalidLoginErrorMsgTitleBy);
         }
 
 

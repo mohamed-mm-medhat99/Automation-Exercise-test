@@ -59,6 +59,7 @@ public class AuthonticationTest extends TestBase {
         Assert.assertEquals(deleteAccountText ,expectdDeletedMessage);
         authPageObj.ClickOnContinueButton();
     }
+    //testcase2
     @Test
     public void validLogin() throws InterruptedException {
         String expectedLoginMessage = "Login to your account";
@@ -70,6 +71,19 @@ public class AuthonticationTest extends TestBase {
         authPageObj.ClickOnLoginButton();
         String expectedLoggedUserNameText = authPageObj.getLoggedUserText();
         Assert.assertEquals(actualLoggedUserNameText ,expectedLoggedUserNameText);
+    }
+    //testcase3
+    @Test
+    public void invalidLogin() throws InterruptedException {
+        String expectedLoginMessage = "Login to your account";
+        String expectedLoginErrorMessage = "Your email or password is incorrect!";
+        authPageObj.navigateToPage("Signup / Login");
+        String loginText = authPageObj.validateLoginTitle();
+        Assert.assertEquals(loginText ,expectedLoginMessage);
+        authPageObj.fillLoginData("mohamed257@gmail.com" , "P@SsW0rd");
+        authPageObj.ClickOnLoginButton();
+        String expectedLoginErrorText = authPageObj.getLoginErrorText();
+        Assert.assertEquals(expectedLoginErrorMessage ,expectedLoginErrorText);
     }
 
 
