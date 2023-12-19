@@ -32,8 +32,8 @@ public class AuthonticationTest extends TestBase {
         String email = "mohamed"+generateRandomNumber(1,999)+"@gmail.com";
         System.out.println("Use Me to Login :"+email+"");
         String ExpectedTitle = "ENTER ACCOUNT INFORMATION";
-        String expectdloginMessage = "ACCOUNT CREATED!";
-        String expectdDeletedMessage = "ACCOUNT DELETED!";
+        String expectedloginMessage = "ACCOUNT CREATED!";
+        String expectedDeletedMessage = "ACCOUNT DELETED!";
         //step4 navigate to signup page
         authPageObj.navigateToPage("Signup / Login");
         //step5 validate that the target page is visible
@@ -52,11 +52,11 @@ public class AuthonticationTest extends TestBase {
         authPageObj.fillSignUpData(name ,LastName ,address , State ,City , ZipCode , mobileNumber);
         authPageObj.ClickOnAccountButton();
         String signUpText = authPageObj.validateSignUpTitle();
-        Assert.assertEquals(signUpText ,expectdloginMessage);
+        Assert.assertEquals(signUpText ,expectedloginMessage);
         authPageObj.ClickOnContinueButton();
         authPageObj.navigateToPage("Delete Account");
         String deleteAccountText = authPageObj.validateDeleteAccountTitle();
-        Assert.assertEquals(deleteAccountText ,expectdDeletedMessage);
+        Assert.assertEquals(deleteAccountText ,expectedDeletedMessage);
         authPageObj.ClickOnContinueButton();
     }
     //testcase2
@@ -84,6 +84,32 @@ public class AuthonticationTest extends TestBase {
         authPageObj.ClickOnLoginButton();
         String expectedLoginErrorText = authPageObj.getLoginErrorText();
         Assert.assertEquals(expectedLoginErrorMessage ,expectedLoginErrorText);
+    }
+    //testcase4
+    @Test
+    public void logout() throws InterruptedException {
+        String expectedLoginMessage = "Login to your account";
+        String actualLoggedUserNameText = "mohamed917";
+        String expectedLoginErrorMessage = "Your email or password is incorrect!";
+        authPageObj.navigateToPage("Signup / Login");
+        String loginText = authPageObj.validateLoginTitle();
+        Assert.assertEquals(loginText ,expectedLoginMessage);
+        authPageObj.fillLoginData("mohamed256@gmail.com" , "P@SsW0rd");
+        authPageObj.ClickOnLoginButton();
+        String expectedLoggedUserNameText = authPageObj.getLoggedUserText();
+        Assert.assertEquals(actualLoggedUserNameText ,expectedLoggedUserNameText);
+        authPageObj.ClickOnLogoutButton();
+        boolean flag = authPageObj.pageVisibility("login");
+        Assert.assertTrue(flag);
+    }
+    //testcase5
+    @Test
+    public void registerWithExistingEmail() throws InterruptedException {
+        String email = "mohamed256@gmail.com";
+        String name = "Mohamed Medhat";
+        authPageObj.navigateToPage("Signup / Login");
+        authPageObj.enterValidData(email,name);
+
     }
 
 

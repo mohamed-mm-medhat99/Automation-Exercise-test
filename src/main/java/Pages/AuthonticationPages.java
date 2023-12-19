@@ -12,6 +12,7 @@ public class AuthonticationPages extends PageBase {
     By createAccountButtonBy = By.cssSelector("[data-qa='create-account']");
     By continueButtonBy = By.cssSelector("[data-qa='continue-button']");
     By loginButtonBy = By.cssSelector("[data-qa='login-button']");
+    By logoutButton = By.cssSelector("[href='/logout']");
     //TextFields
     By nameFieldBy = By.xpath("//*[@data-qa='signup-name']");
     By emailFieldBy = By.xpath("//*[@data-qa='signup-email']");
@@ -138,6 +139,11 @@ public class AuthonticationPages extends PageBase {
         public String getLoginErrorText()
         {
             return getAnyText(driver ,invalidLoginErrorMsgTitleBy);
+        }
+
+        public void ClickOnLogoutButton() throws InterruptedException {
+            Thread.sleep(2000);
+            clickOnButton(driver , logoutButton);
         }
 
 
