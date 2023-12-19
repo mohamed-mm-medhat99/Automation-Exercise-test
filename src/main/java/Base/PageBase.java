@@ -22,6 +22,7 @@ public class PageBase {
         return currentUrl.contains(pageName);
     }
 
+
     public void fillTextFields(WebDriver driver, By locator , String data)
     {
         driver.findElement(locator).sendKeys(data);
@@ -39,6 +40,11 @@ public class PageBase {
     }
 
     public String validateTitles(WebDriver driver , By textLocator)
+    {
+        return driver.findElement(textLocator).getText();
+    }
+
+    public String getAnyText(WebDriver driver , By textLocator)
     {
         return driver.findElement(textLocator).getText();
     }

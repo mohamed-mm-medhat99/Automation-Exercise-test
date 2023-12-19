@@ -7,22 +7,34 @@ import org.openqa.selenium.WebElement;
 public class AuthonticationPages extends PageBase {
     public  WebDriver driver;
     //locators
+    //Buttons
+    By signupButtonBy = By.xpath("//*[@data-qa='signup-button']");
+    By createAccountButtonBy = By.cssSelector("[data-qa='create-account']");
+    By continueButtonBy = By.cssSelector("[data-qa='continue-button']");
+    By loginButtonBy = By.cssSelector("[data-qa='login-button']");
+    //TextFields
     By nameFieldBy = By.xpath("//*[@data-qa='signup-name']");
     By emailFieldBy = By.xpath("//*[@data-qa='signup-email']");
-    By signupButtonBy = By.xpath("//*[@data-qa='signup-button']");
-    By accountInfoTitleBy = By.xpath("//*[text()='Enter Account Information']");
     By passwordFieldBy = By.cssSelector("#password");
     By firstNameFieldBy = By.xpath("//input[@id='first_name']");
     By lastNameFieldBy = By.xpath("//input[@id='last_name']");
-    By addressBy = By.xpath("//input[@id='address1']");
+    By addressFieldBy = By.xpath("//input[@id='address1']");
     By stateFieldBy = By.xpath("//input[@id='state']");
     By cityFieldBy = By.xpath("//input[@id='city']");
     By zipCodeFieldBy = By.xpath("//input[@id='zipcode']");
     By mobileNumberFieldBy = By.xpath("//input[@id='mobile_number']");
-    By createAccountBtn = By.cssSelector("[data-qa='create-account']");
+    By emailLoginFieldBy = By.cssSelector("[data-qa='login-email']");
+    By passwordLoginFieldBy = By.cssSelector("[data-qa='login-password']");
+    //CheckBoxes
+
+    //Titles
+    By accountInfoTitleBy = By.xpath("//*[text()='Enter Account Information']");
     By accountCreatedTitleBy = By.cssSelector("[data-qa='account-created']");
-    By continueButtonBy = By.cssSelector("[data-qa='continue-button']");
     By accountDeletedTitleBy = By.cssSelector("[data-qa='account-deleted']");
+    By loginMessageTitleBy = By.cssSelector("div .login-form>h2");
+    By loginUserNameTitleBy = By.xpath("//a[text()=' Logged in as ']/b");
+
+    //Methods
         public AuthonticationPages(WebDriver driver)
         {
             this.driver = driver;
@@ -50,6 +62,10 @@ public class AuthonticationPages extends PageBase {
 
         public String validateSignUpTitle(){
             return validateTitles(driver , accountCreatedTitleBy);
+        }
+
+        public String validateLoginTitle(){
+            return validateTitles(driver , loginMessageTitleBy);
         }
         public String validateDeleteAccountTitle(){
             return validateTitles(driver , accountDeletedTitleBy);
@@ -88,7 +104,7 @@ public class AuthonticationPages extends PageBase {
         {
             fillTextFields(driver , firstNameFieldBy , Fname);
             fillTextFields(driver , lastNameFieldBy , Lname);
-            fillTextFields(driver , addressBy , address);
+            fillTextFields(driver , addressFieldBy , address);
             fillTextFields(driver , stateFieldBy , State);
             fillTextFields(driver , cityFieldBy , City);
             fillTextFields(driver , zipCodeFieldBy , ZipCode);
@@ -97,11 +113,27 @@ public class AuthonticationPages extends PageBase {
 
         public void ClickOnAccountButton() throws InterruptedException {
             Thread.sleep(2000);
-            clickOnButton(driver , createAccountBtn);
+            clickOnButton(driver , createAccountButtonBy);
         }
         public void ClickOnContinueButton()
         {
             clickOnButton(driver , continueButtonBy);
         }
+        public void fillLoginData(String email , String Password){
+            fillTextFields(driver , emailLoginFieldBy , email);
+            fillTextFields(driver , passwordLoginFieldBy ,Password);
+        }
+
+        public void ClickOnLoginButton() throws InterruptedException {
+            Thread.sleep(2000);
+            clickOnButton(driver , loginButtonBy);
+        }
+
+        public String getLoggedUserText()
+        {
+            return getAnyText(driver , loginUserNameTitleBy);
+        }
+
+
 
 }

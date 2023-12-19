@@ -30,6 +30,7 @@ public class AuthonticationTest extends TestBase {
         String ZipCode = "159657";
         String mobileNumber = "12658965415";
         String email = "mohamed"+generateRandomNumber(1,999)+"@gmail.com";
+        System.out.println("Use Me to Login :"+email+"");
         String ExpectedTitle = "ENTER ACCOUNT INFORMATION";
         String expectdloginMessage = "ACCOUNT CREATED!";
         String expectdDeletedMessage = "ACCOUNT DELETED!";
@@ -58,10 +59,17 @@ public class AuthonticationTest extends TestBase {
         Assert.assertEquals(deleteAccountText ,expectdDeletedMessage);
         authPageObj.ClickOnContinueButton();
     }
-
-    public void validLogin()
-    {
-
+    @Test
+    public void validLogin() throws InterruptedException {
+        String expectedLoginMessage = "Login to your account";
+        String actualLoggedUserNameText = "mohamed917";
+        authPageObj.navigateToPage("Signup / Login");
+        String loginText = authPageObj.validateLoginTitle();
+        Assert.assertEquals(loginText ,expectedLoginMessage);
+        authPageObj.fillLoginData("mohamed256@gmail.com" , "P@SsW0rd");
+        authPageObj.ClickOnLoginButton();
+        String expectedLoggedUserNameText = authPageObj.getLoggedUserText();
+        Assert.assertEquals(actualLoggedUserNameText ,expectedLoggedUserNameText);
     }
 
 
