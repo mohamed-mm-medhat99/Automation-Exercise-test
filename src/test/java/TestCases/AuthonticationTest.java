@@ -21,7 +21,7 @@ public class AuthonticationTest extends TestBase {
     }
     //testcase1
     @Test
-    public void registerUser() throws InterruptedException {
+    public void registerUserTest() throws InterruptedException {
         String name = "mohamed"+generateRandomNumber(1,999)+"";
         String LastName = "Medhat"+generateRandomNumber(1,999)+"";
         String address = "Street"+generateRandomNumber(1,999)+" , Street"+generateRandomNumber(1,999)+"";
@@ -61,7 +61,7 @@ public class AuthonticationTest extends TestBase {
     }
     //testcase2
     @Test
-    public void validLogin() throws InterruptedException {
+    public void validLoginTest() throws InterruptedException {
         String expectedLoginMessage = "Login to your account";
         String actualLoggedUserNameText = "mohamed917";
         authPageObj.navigateToPage("Signup / Login");
@@ -74,7 +74,7 @@ public class AuthonticationTest extends TestBase {
     }
     //testcase3
     @Test
-    public void invalidLogin() throws InterruptedException {
+    public void invalidLoginTest() throws InterruptedException {
         String expectedLoginMessage = "Login to your account";
         String expectedLoginErrorMessage = "Your email or password is incorrect!";
         authPageObj.navigateToPage("Signup / Login");
@@ -87,10 +87,9 @@ public class AuthonticationTest extends TestBase {
     }
     //testcase4
     @Test
-    public void logout() throws InterruptedException {
+    public void logoutTest() throws InterruptedException {
         String expectedLoginMessage = "Login to your account";
         String actualLoggedUserNameText = "mohamed917";
-        String expectedLoginErrorMessage = "Your email or password is incorrect!";
         authPageObj.navigateToPage("Signup / Login");
         String loginText = authPageObj.validateLoginTitle();
         Assert.assertEquals(loginText ,expectedLoginMessage);
@@ -104,7 +103,7 @@ public class AuthonticationTest extends TestBase {
     }
     //testcase5
     @Test
-    public void registerWithExistingEmail() throws InterruptedException {
+    public void registerWithExistingEmailTest() throws InterruptedException {
         String email = "mohamed256@gmail.com";
         String name = "Mohamed Medhat";
         authPageObj.navigateToPage("Signup / Login");
