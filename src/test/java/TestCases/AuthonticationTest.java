@@ -2,10 +2,15 @@ package TestCases;
 
 import Base.TestBase;
 import Pages.AuthonticationPages;
+import TestData.TestData;
+import io.qameta.allure.internal.shadowed.jackson.databind.exc.InvalidFormatException;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.io.IOException;
 
 public class AuthonticationTest extends TestBase {
     AuthonticationPages authPageObj;
@@ -13,6 +18,11 @@ public class AuthonticationTest extends TestBase {
     public void beforeMethod(){
         openBrowser();
         authPageObj = new AuthonticationPages(driver);
+    }
+    @DataProvider(name = "PushDataToAuth")
+    public Object [][] PushDataToAuth() throws InvalidFormatException, IOException {
+        Object [][] test = TestData.fetchData("C:\\Users\\mhefela\\IdeaProjects\\automation_excersice\\src\\test\\resources\\TestDataFiles\\testFile.xlsx" , "testRegisterWithExistingEmail");
+        return test;
     }
 
     public int generateRandomNumber(int min, int max)
@@ -102,12 +112,12 @@ public class AuthonticationTest extends TestBase {
         Assert.assertTrue(flag);
     }
     //testcase5
-    @Test
-    public void registerWithExistingEmailTest() throws InterruptedException {
-        String email = "mohamed256@gmail.com";
-        String name = "Mohamed Medhat";
+    @Test(dataProvider = "PushDataToAuth")
+    public void registerWithExistingEmailTest(String Email , String Name) throws InterruptedException {
+//        String email = "mohamed256@gmail.com";
+//        String name = "Mohamed Medhat";
         authPageObj.navigateToPage("Signup / Login");
-        authPageObj.enterValidData(email,name);
+        authPageObj.enterValidData(Email,Name);
 
     }
 

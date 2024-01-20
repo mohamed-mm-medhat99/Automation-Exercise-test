@@ -11,7 +11,7 @@ public class TestBase {
 
     public static void openBrowser()
     {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\yogy7\\Documents\\GitHub\\Automation-Exercise-test\\src\\Browser\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\mhefela\\IdeaProjects\\automation_excersice\\src\\Browser\\chromedriver.exe");
 
         //create an object from chromedriver
         ChromeOptions options = new ChromeOptions();
@@ -29,3 +29,5 @@ public class TestBase {
         driver.quit();
     }
 }
+//First Laptop----> C:\Users\mhefela\IdeaProjects\automation_excersice\src\Browser\chromedriver.exe
+//Second Laptop----> C:\Users\yogy7\Documents\GitHub\Automation-Exercise-test\src\Browser\chromedriver.exe
